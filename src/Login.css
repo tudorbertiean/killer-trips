@@ -1,0 +1,55 @@
+.image {
+	zoom: 28%;
+
+}
+
+#middle{
+	float: left;
+	width: 33%;
+}
+
+#left{
+	float: left;
+	width: 33%;
+	text-align: left;
+}
+
+#right{
+	float: right;
+}
+
+#title {
+	color: red;
+	display: inline-block;
+
+	margin:0 auto;
+	width:33%;
+}
+
+#login {
+	float:right;
+	width:33%;
+	text-align: right;
+}
+
+.loginLabel {
+	color: red;
+	font-style: italic;
+}
+
+body {
+	background-color: black;
+}
+
+.inputLabel {
+	color: red;
+}
+
+#header {
+	width:100%;
+	text-align: center;
+}
+
+#headerEnd{
+	clear: left;
+}
