@@ -38,7 +38,7 @@ include("Authenticate.php");
 
 if(isset($_POST["strUsername"]) && isset($_POST["strPassword"])){
     if(Authenticate::testReg($_POST["strUsername"],$_POST["strPassword"])){
-        echo "<h1>Welcome Back ".$_POST['strUsername']."!</h1>";
+        echo '<h1 class = "inputLabel">Welcome Back '.$_POST["strUsername"].'!</h1>';
     }
     else{
         header("location: register.php");

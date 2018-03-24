@@ -40,17 +40,17 @@ if(isset($_POST["strUsername"]) && isset($_POST["strPassword"]) && isset($_POST[
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "users";
+$dbname = "killertrips";
 
 	try {
 		$mysqli = new mysqli($servername, $username, $password, $dbname);
-		$queryString = "INSERT INTO `credentials`(`username`, `password`, `email`) VALUES ('".$_POST["strUsername"]."',MD5('".$_POST["strPassword"]."'),'".$_POST["strEmail"]."')";
+		$queryString = "INSERT INTO `users`(`username`, `password`, `permission`) VALUES ('".$_POST["strUsername"]."',MD5('".$_POST["strPassword"]."'),'full')";
 		$result = $mysqli->query($queryString);
 		if ($result==true){
-			 echo "<h1>Welcome</h1>";
+			 echo '<h1 class = "inputLabel">Welcome</h1>';
 		}
 		else {
-			echo "<h1>Incorrect Username and/or password!</h1>";;
+			echo '<h1 class = "inputLabel">Incorrect Username and/or password!</h1>';
 		}
 	}
 	catch(mysqli_sql_exception $e){

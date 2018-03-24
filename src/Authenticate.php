@@ -5,13 +5,13 @@ class Authenticate {
 	public static $servername = "localhost";
 	public static $username = "root";
 	public static $password = "";
-	public static $dbname = "users";
+	public static $dbname = "killertrips";
 	
 	public static function testReg($un,$pw){
 		$valid = false;
 		try {
             $mysqli = new mysqli(self::$servername, self::$username, self::$password, self::$dbname);
-            $queryString = "SELECT * FROM `credentials` WHERE username = '".$un."' and password = MD5('".$pw."');";
+            $queryString = "SELECT * FROM `users` WHERE username = '".$un."' and password = MD5('".$pw."');";
             $result = $mysqli->query($queryString);
             if (($result->num_rows)>0){
                 $valid = true;
