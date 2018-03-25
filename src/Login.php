@@ -32,7 +32,7 @@
 
 <hr id="headerEnd" color="red" size="10">
 
-<label class = "inputLabel">I will fill in this space with crap</label>
+<label class = "inputLabel">Cities to come .....</label>
 <?php
 include("Authenticate.php");
 
