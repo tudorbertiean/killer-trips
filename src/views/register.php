@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <head> <title>PHP Script</title>
-<link rel="stylesheet" href="login.css">
+<link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
 <div id="header">
     <div id="left">
-        <img src="logo.jpg" alt="logo" class="image">
+        <img src="../images/logo.jpg" alt="logo" class="image">
     </div>
     <div id="right">
-        <img src="logo.jpg" alt="logo" class="image">
+        <img src="../images/logo.jpg" alt="logo" class="image">
     </div>
     <div id="middle">
         <h1 id="title">Killer Trips</h1>
