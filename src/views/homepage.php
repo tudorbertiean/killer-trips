@@ -37,42 +37,27 @@
             <div class="jumbotron"></div>
             <h2>View the most recent city entries below:</h2>
             <div class="row">
-              <div class="col-6 col-lg-4">
-                <h2>City 1</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p style="color:green">167 <span class="glyphicon glyphicon-thumbs-up"></span></p>
-                <p><a class="btn btn-secondary" href="#" role="button">See more &raquo;</a></p>
-              </div><!--/span-->
-              <div class="col-6 col-lg-4">
-                <h2>City 2</h2> 
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p style="color:red">-120 <span class="glyphicon glyphicon-thumbs-down"></span></p>
-                <p><a class="btn btn-secondary" href="#" role="button">See more &raquo;</a></p>
-              </div><!--/span-->
-              <div class="col-6 col-lg-4">
-                <h2>City 3</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p style="color:green">27 <span class="glyphicon glyphicon-thumbs-up"></span></p>
-                <p><a class="btn btn-secondary" href="#" role="button">See more &raquo;</a></p>
-              </div><!--/span-->
-              <div class="col-6 col-lg-4">
-                <h2>City 4</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p style="color:green">0 <span class="glyphicon glyphicon-thumbs-up"></span></p>
-                <p><a class="btn btn-secondary" href="#" role="button">See more &raquo;</a></p>
-              </div><!--/span-->
-              <div class="col-6 col-lg-4">
-                <h2>City 5</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p style="color:red">-100 <span class="glyphicon glyphicon-thumbs-down"></span></p>
-                <p><a class="btn btn-secondary" href="#" role="button">See more &raquo;</a></p>
-              </div><!--/span-->
-              <div class="col-6 col-lg-4">
-                <h2>City 6</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p style="color:green">5 <span class="glyphicon glyphicon-thumbs-up"></span></p>
-                <p><a class="btn btn-secondary" href="#" role="button">See more &raquo;</a></p>
-              </div><!--/span-->
+              <?php
+                $conn = mysqli_connect("localhost", "root", "", "killertrips");
+                if ($conn->connect_error) {
+                  echo "Problem connecting to database, check your internet connection!";
+                }
+
+                $query = "SELECT * from cities";
+                $result = $conn->query($query);
+
+                while ($row = $result->fetch_assoc()) {
+                  ?>
+                  <div class="col-6 col-lg-4 city">
+                    <h3><?php echo $row['city']?></h3>
+                    <img src=<?php echo "../images/".$row['image']?> alt="" />
+                    <p class="description"><?php echo $row['description']?></p>
+                    <p style="color:green;float:left;"><?php echo $row['votescore']?> <span class="glyphicon glyphicon-thumbs-up"></span></p>
+                    <p style="float:left;"><a class="btn btn-secondary" href="#" role="button">See more &raquo;</a></p>
+                  </div>
+                  <?php
+                }
+              ?>
             </div><!--/row-->
           </div><!--/span-->
         </div><!--/row-->
