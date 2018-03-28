@@ -21,10 +21,24 @@
           <ul class="nav navbar-nav">
             <li><a href="http://localhost:8080/killer-trips/">Home</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://localhost:8080/killer-trips/src/views/register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="http://localhost:8080/killer-trips/src/views/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-          </ul>
+          <?php
+            session_start();
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+                ?>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#"><?php echo $_SESSION['username'];?></a></li>
+                  <li><a href="http://localhost:8080/killer-trips/src/php/Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                </ul>
+                <?php
+              } else{
+                ?>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="http://localhost:8080/killer-trips/src/views/register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                  <li><a href="http://localhost:8080/killer-trips/src/views/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+                <?php
+              }
+            ?>
           <form class="navbar-form navbar-left" action="/action_page.php">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Search">
@@ -64,6 +78,18 @@
             <h2>Yummy Stuff:</h2>
 
             <h2>Comments:</h2>
+            
+            <?php
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+              ?>
+              <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+              <?php
+            }
+            ?>
 
             <?php
                 $arrlength = count($comments);

@@ -15,10 +15,24 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://localhost:8080/killer-trips/src/views/register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="http://localhost:8080/killer-trips/src/views/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-          </ul>
+          <?php
+            session_start();
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+              ?>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><?php echo $_SESSION['username'];?></a></li>
+                <li><a href="http://localhost:8080/killer-trips/src/php/Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+              </ul>
+              <?php
+            } else{
+              ?>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://localhost:8080/killer-trips/src/views/register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="http://localhost:8080/killer-trips/src/views/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              </ul>
+              <?php
+            }
+            ?>
           <form class="navbar-form navbar-left" action="/action_page.php">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Search">

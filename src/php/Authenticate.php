@@ -14,6 +14,9 @@ class Authenticate {
             $queryString = "SELECT * FROM `users` WHERE username = '".$un."' and password = MD5('".$pw."');";
             $result = $mysqli->query($queryString);
             if (($result->num_rows)>0){
+                session_start();
+                $_SESSION['loggedin'] = true;
+                $_SESSION['username'] = $un;
                 $valid = true;
             }
         }

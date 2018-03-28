@@ -46,10 +46,14 @@ $dbname = "killertrips";
 		$mysqli = new mysqli($servername, $username, $password, $dbname);
 		$queryString = "INSERT INTO `users`(`username`, `password`, `permission`) VALUES ('".$_POST["strUsername"]."',MD5('".$_POST["strPassword"]."'),'full')";
 		$result = $mysqli->query($queryString);
+		session_start();
 		if ($result==true){
+			$_SESSION['loggedin'] = true;
+			$_SESSION['username'] = $username;
 			header("location: homepage.php");
 		}
 		else {
+			$_SESSION['loggedin'] = false;
 			echo '<h1 class = "inputLabel">Incorrect Username and/or password!</h1>';
 		}
 	}

@@ -43,6 +43,7 @@
                 header("location: http://localhost:8080/killer-trips/src/views/homepage.php");
             }
             else{
+                $_SESSION['loggedin'] = false;
                 header("location: register.php");
             }
         }
