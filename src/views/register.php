@@ -37,24 +37,20 @@
 
 <?php
 if(isset($_POST["strUsername"]) && isset($_POST["strPassword"]) && isset($_POST["strEmail"])){
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "killertrips";
+	include("../php/Authenticate.php");
+	
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "killertrips";
 
 	try {
-		$mysqli = new mysqli($servername, $username, $password, $dbname);
-		$queryString = "INSERT INTO `users`(`username`, `password`, `permission`) VALUES ('".$_POST["strUsername"]."',MD5('".$_POST["strPassword"]."'),'full')";
-		$result = $mysqli->query($queryString);
-		session_start();
-		if ($result==true){
-			$_SESSION['loggedin'] = true;
-			$_SESSION['username'] = $username;
-			header("location: homepage.php");
+		if(Authenticate::register($_POST["strUsername"], $_POST["strPassword"])){
+			header("location: http://localhost:8080/killer-trips/src/views/homepage.php");
 		}
-		else {
+		else{
+			echo 'Unable to login, try a different username.';
 			$_SESSION['loggedin'] = false;
-			echo '<h1 class = "inputLabel">Incorrect Username and/or password!</h1>';
 		}
 	}
 	catch(mysqli_sql_exception $e){

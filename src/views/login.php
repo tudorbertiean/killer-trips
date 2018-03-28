@@ -39,7 +39,7 @@
         include("../php/Authenticate.php");
 
         if(isset($_POST["strUsername"]) && isset($_POST["strPassword"])){
-            if(Authenticate::testReg($_POST["strUsername"],$_POST["strPassword"])){
+            if(Authenticate::login($_POST["strUsername"],$_POST["strPassword"])){
                 header("location: http://localhost:8080/killer-trips/src/views/homepage.php");
             }
             else{
