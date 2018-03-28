@@ -36,11 +36,11 @@
         <label class = "inputLabel">Cities to come .....</label>
     </body>
     <?php
-        include("Authenticate.php");
+        include("../php/Authenticate.php");
 
         if(isset($_POST["strUsername"]) && isset($_POST["strPassword"])){
             if(Authenticate::testReg($_POST["strUsername"],$_POST["strPassword"])){
-                echo '<h1 class = "inputLabel">Welcome Back '.$_POST["strUsername"].'!</h1>';
+                header("location: http://localhost:8080/killer-trips/src/views/homepage.php");
             }
             else{
                 header("location: register.php");

@@ -42,6 +42,17 @@
           <div class="col-md-offset-2 col-md-8">
             <h1><?php echo $city["city"]?></h1>
             <h4><?php echo $city["country"]?></h4>
+            
+            <p><?php echo $city["votescore"]?></p>
+            <button class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-thumbs-up"></i>
+            </button>
+            <button class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-thumbs-down"></i>
+            </button>
+
+            <br>
+
             <div class="jumbotron" style="background-image: url(../images/<?php echo $city["image"]?>);"></div>
             <h2>Description:</h2>
             <p><?php echo $city["description"]?></p>

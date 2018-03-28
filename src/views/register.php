@@ -47,7 +47,7 @@ $dbname = "killertrips";
 		$queryString = "INSERT INTO `users`(`username`, `password`, `permission`) VALUES ('".$_POST["strUsername"]."',MD5('".$_POST["strPassword"]."'),'full')";
 		$result = $mysqli->query($queryString);
 		if ($result==true){
-			 echo '<h1 class = "inputLabel">Welcome</h1>';
+			header("location: homepage.php");
 		}
 		else {
 			echo '<h1 class = "inputLabel">Incorrect Username and/or password!</h1>';
