@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("../php/Cities.php");
     include("../php/Comments.php");
     $city = Cities::getCityById($_GET["cityid"]); 
@@ -22,7 +23,6 @@
             <li><a href="http://localhost:8080/killer-trips/">Home</a></li>
           </ul>
           <?php
-            session_start();
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
                 ?>
                 <ul class="nav navbar-nav navbar-right">
@@ -81,12 +81,16 @@
             
             <?php
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+              $userid = $_SESSION["userid"];
+              $cityid = $city["cityid"];
               ?>
-              <div class="form-group">
-                <label for="comment">Comment:</label>
-                <textarea class="form-control" rows="5" id="comment"></textarea>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
+              <form role="form" method="post" action="../php/AddComment.php?cityid=<?php echo $cityid?>&userid=<?php echo $userid?>">
+                <div class="form-group">
+                  <label for="comment">Comment:</label>
+                  <textarea class="form-control" rows="5" name="comment" id="comment"></textarea>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
               <?php
             }
             ?>

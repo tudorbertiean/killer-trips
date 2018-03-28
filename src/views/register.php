@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<head> <title>PHP Script</title>
+<head> <title>Register</title>
 <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-<div id="header">
+<div id="header">ß
     <div id="left">
         <img src="../images/logo.jpg" alt="logo" class="image">
     </div>

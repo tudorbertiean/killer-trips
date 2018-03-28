@@ -15,8 +15,10 @@ class Authenticate {
             $result = $mysqli->query($queryString);
             if (($result->num_rows)>0){
                 session_start();
+                $user = $result->fetch_assoc();
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $un;
+                $_SESSION['userid'] = $user["userid"];
                 $valid = true;
             }
         }
@@ -39,9 +41,15 @@ class Authenticate {
                 $result = $mysqli->query($queryString);
                 session_start();
                 if ($result==true){
-                    $valid = true;
-                    $_SESSION['loggedin'] = true;
-                    $_SESSION['username'] = $un;
+                    $queryString = "SELECT * FROM `users` WHERE username = '".$un."';";
+                    $result = $mysqli->query($queryString);
+                    if (($result->num_rows) > 0){
+                        $user = $result->fetch_assoc();
+                        $_SESSION['loggedin'] = true;
+                        $_SESSION['username'] = $un;
+                        $_SESSION['userid'] = $user["userid"];
+                        $valid = true;
+                    }      
                 }
             }
         }
