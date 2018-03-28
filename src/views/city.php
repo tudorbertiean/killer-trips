@@ -1,6 +1,12 @@
+<?php
+    include("../php/Cities.php");
+    include("../php/Comments.php");
+    $city = Cities::getCityById($_GET["cityid"]); 
+    $comments = Comments::getCommentsForCity($_GET["cityid"]);                     
+?>
 <!DOCTYPE html>
     <head> 
-        <title>Killer Trips</title>
+        <title><?php echo $city["city"]?></title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>        
@@ -13,7 +19,7 @@
             <a class="navbar-brand" href="#">Killer Trips</a>
           </div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li><a href="http://localhost:8080/killer-trips/">Home</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="http://localhost:8080/killer-trips/src/views/register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -31,33 +37,41 @@
           </form>
         </div>
       </nav>
-      <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-
       <div class="container">
         <div class="row row-offcanvas row-offcanvas-right">
           <div class="col-md-offset-2 col-md-8">
-            <h1>Welcome to Killer Trips!</h1>
-            <div class="jumbotron" style="background-image: url(../images/toronto-skyline.jpg"></div>
-            <h2>View the most recent city entries below:</h2>
-            <div class="row">
-              <?php
-                include_once("../php/Cities.php");
-                $cities = Cities::getNumCities();
-                $arrlength = count($cities);
+            <h1><?php echo $city["city"]?></h1>
+            <h4><?php echo $city["country"]?></h4>
+            <div class="jumbotron" style="background-image: url(../images/<?php echo $city["image"]?>);"></div>
+            <h2>Description:</h2>
+            <p><?php echo $city["description"]?></p>
+            
+            <h2>Attractions:</h2>
+
+            <h2>Things That May Kill You:</h2>
+
+            <h2>Yummy Stuff:</h2>
+
+            <h2>Comments:</h2>
+
+            <?php
+                $arrlength = count($comments);
 
                 for($x = 0; $x < $arrlength; $x++) {
-                  $city = $cities[$x];
-                  ?>
-                  <div class="col-6 col-lg-4 city">
-                    <h3><?php echo $city['city']?></h3>
-                    <img src=<?php echo "../images/".$city['image']?> alt="" />
-                    <p class="description"><?php echo $city['description']?></p>
-                    <p style="color:green;float:left;"><?php echo $city['votescore']?> <span class="glyphicon glyphicon-thumbs-up"></span></p>
-                    <p style="float:left;"><a class="btn btn-secondary" href="http://localhost:8080/killer-trips/src/views/city.php?cityid=<?php echo $city['cityid']?>" role="button">See more &raquo;</a></p>
-                  </div>
-                  <?php
-                }                  
-              ?>
+                    $comment = $comments[$x];
+                    include_once("../php/User.php");
+                    $user = User::getUserById($comment["userid"]);
+                    ?>
+                    <div class="row">
+                        <div class="panel panel-white panel-shadow">
+                            <p><b><?php echo $user["username"]?></b></p>
+                            <p><i><?php echo $comment["date"]?></i></p>
+                            <p><?php echo $comment["comment"]?></p>
+                        </div>
+                    </div>
+                    <?php
+                  } 
+            ?>                       
             </div><!--/row-->
           </div><!--/span-->
         </div><!--/row-->

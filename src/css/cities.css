@@ -1,5 +1,4 @@
 .jumbotron {
-    background-image: url("../images/toronto-skyline.jpg");
     height: 300px;
     -webkit-background-size: 100% 100%;
     -moz-background-size: 100% 100%;
@@ -22,4 +21,16 @@
      width:100%;
      height: 100px;
  }
- 
+
+/* Comment section */
+.panel-shadow {
+    padding: 20px;
+}
+
+.panel-shadow {
+    box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
+}
+
+.panel-white {
+  border: 1px solid #dddddd;
+}
