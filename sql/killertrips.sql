@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2018 at 10:38 PM
+-- Generation Time: Mar 29, 2018 at 11:04 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -139,21 +139,6 @@ CREATE TABLE `vote` (
   `commentid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `yummyinfo`
---
-
-CREATE TABLE `yummyinfo` (
-  `yummyid` int(11) NOT NULL,
-  `userid` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `yummyname` varchar(100) NOT NULL,
-  `yummytext` text NOT NULL,
-  `yummyscore` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Indexes for dumped tables
 --
@@ -201,13 +186,6 @@ ALTER TABLE `vote`
   ADD KEY `cityid` (`cityid`);
 
 --
--- Indexes for table `yummyinfo`
---
-ALTER TABLE `yummyinfo`
-  ADD PRIMARY KEY (`yummyid`),
-  ADD UNIQUE KEY `userid` (`userid`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -236,11 +214,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `vote`
   MODIFY `voteid` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `yummyinfo`
---
-ALTER TABLE `yummyinfo`
-  MODIFY `yummyid` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
