@@ -23,14 +23,13 @@ $(document).ready( function() {
             
             reader.onload = function (e) {
                 $(".jumbotron").css('background-image','url("' + e.target.result + '")');
-                $('.jumbotron').css.attr('src', e.target.result);
             }
             
             reader.readAsDataURL(input.files[0]);
         }
     }
 
-    $("#imgInp").change(function(){
+    $("#cityImg").change(function(){
         readURL(this);
     }); 	
 });

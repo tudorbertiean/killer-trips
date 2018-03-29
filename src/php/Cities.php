@@ -56,11 +56,20 @@ class Cities {
 			// make file name in lower case
 			$final_file=str_replace(' ', '-', $new_file_name);
 			
-            if(move_uploaded_file($file_loc, $folder.$final_file)){
+            if(move_uploaded_file($file_loc, $folder.$final_file)) {
                 $queryString = "INSERT INTO `cities` (`city`, `country`, `description`, `image`) VALUES ('".$city."', '".$country."', '".$description."', '".$final_file."')";
 
                 if ($db->query($queryString) === TRUE) {
-                    echo "Success: " . $file . "<br>";
+                    // // Insert attractions and kill info
+                    $cityid = $db->insert_id;
+                    $attSql = "INSERT INTO `attractions` (`name`, `description`, `cityid`) VALUES ";
+                    for ($i = 0; $i < count($attractionNames); $i++) {
+                        $name = $attractionNames[$i];
+                        $description = $attractionDesc[$i];
+                        $attSql = $attSql."('".$name."', '".$description."', '".$cityid."'), ";
+                    }
+                    $db->query(rtrim($attSql,", ").";");
+                    header("Location: http://localhost:8080/killer-trips/src/views/city.php?cityid=".$cityid);
                 }
             }
         }
