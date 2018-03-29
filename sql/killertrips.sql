@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 29, 2018 at 04:45 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.0
+-- Host: 127.0.0.1
+-- Generation Time: Mar 29, 2018 at 10:38 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -103,7 +101,8 @@ CREATE TABLE `killinfo` (
   `userid` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `killtext` text NOT NULL,
-  `votescore` int(11) NOT NULL DEFAULT '0'
+  `votescore` int(11) NOT NULL DEFAULT '0',
+  `killname` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -130,6 +129,19 @@ INSERT INTO `users` (`userid`, `username`, `password`, `permission`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `vote`
+--
+
+CREATE TABLE `vote` (
+  `voteid` int(11) NOT NULL,
+  `votescore` int(11) NOT NULL,
+  `cityid` int(11) NOT NULL,
+  `commentid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `yummyinfo`
 --
 
@@ -137,6 +149,7 @@ CREATE TABLE `yummyinfo` (
   `yummyid` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `yummyname` varchar(100) NOT NULL,
   `yummytext` text NOT NULL,
   `yummyscore` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -180,6 +193,14 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`userid`);
 
 --
+-- Indexes for table `vote`
+--
+ALTER TABLE `vote`
+  ADD PRIMARY KEY (`voteid`),
+  ADD KEY `comment` (`commentid`),
+  ADD KEY `cityid` (`cityid`);
+
+--
 -- Indexes for table `yummyinfo`
 --
 ALTER TABLE `yummyinfo`
@@ -195,31 +216,31 @@ ALTER TABLE `yummyinfo`
 --
 ALTER TABLE `cities`
   MODIFY `cityid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
   MODIFY `commentid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT for table `killinfo`
 --
 ALTER TABLE `killinfo`
   MODIFY `killid` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
+--
+-- AUTO_INCREMENT for table `vote`
+--
+ALTER TABLE `vote`
+  MODIFY `voteid` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `yummyinfo`
 --
 ALTER TABLE `yummyinfo`
   MODIFY `yummyid` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- Constraints for dumped tables
 --
@@ -236,7 +257,12 @@ ALTER TABLE `attractions`
 ALTER TABLE `comments`
   ADD CONSTRAINT `city` FOREIGN KEY (`cityid`) REFERENCES `cities` (`cityid`),
   ADD CONSTRAINT `user` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`);
-COMMIT;
+
+--
+-- Constraints for table `vote`
+--
+ALTER TABLE `vote`
+  ADD CONSTRAINT `comment` FOREIGN KEY (`commentid`) REFERENCES `comments` (`commentid`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
