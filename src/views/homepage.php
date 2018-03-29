@@ -10,13 +10,22 @@
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">Killer Trips</a>
+            <a class="navbar-brand" href="homepage.php">Killer Trips</a>
           </div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="homepage.php">Home</a></li>
           </ul>
           <?php
-            session_start();
+          session_start();
+          if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+              ?>
+            <ul class="nav navbar-nav">
+              <li><a href="create.php">Create</a></li>
+            </ul>
+          <?php
+            }
+          ?>
+          <?php
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
               ?>
               <ul class="nav navbar-nav navbar-right">
@@ -76,6 +85,17 @@
           </div><!--/span-->
         </div><!--/row-->
         <hr>
+        <?php
+          if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+              ?>
+              <p>Don't see a city listed? Click on create in the navigation bar and add it!</p>
+          <?php
+            } else {
+              ?>
+                <p>Login/Register to have the ability to add new city entries!</p>
+              <?php
+            }
+          ?>
       </div><!--/.container-->
     </body>
 </html>

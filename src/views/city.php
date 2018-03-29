@@ -20,8 +20,17 @@
             <a class="navbar-brand" href="#">Killer Trips</a>
           </div>
           <ul class="nav navbar-nav">
-            <li><a href="http://localhost:8080/killer-trips/">Home</a></li>
+            <li><a href="homepage.php">Home</a></li>
           </ul>
+          <?php
+          if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+              ?>
+            <ul class="nav navbar-nav">
+              <li><a href="create.php">Create</a></li>
+            </ul>
+          <?php
+            }
+          ?>
           <?php
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
                 ?>
@@ -74,8 +83,6 @@
             <h2>Attractions:</h2>
 
             <h2>Things That May Kill You:</h2>
-
-            <h2>Yummy Stuff:</h2>
 
             <h2>Comments:</h2>
             
