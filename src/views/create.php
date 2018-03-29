@@ -55,13 +55,14 @@
           <div class="col-md-offset-2 col-md-8">
             <h1>Create a New Killer Trip</h1>
             <div class="jumbotron" style="background-image: url(../images/toronto-skyline.jpg"></div>
-            <form role="form" method="post" action="../php/AddCity.php">
+            <form enctype="multipart/form-data" role="form" method="post" action="../php/AddCity.php">
                 <div class="form-group">
                     <label>Upload Image</label>
                     <div class="input-group">
                         <span class="input-group-btn">
                             <span class="btn btn-default btn-file">
-                                Browse… <input type="file" name="cityImg" id="cityImg">
+                                Browse… 
+                                <input type="file" name="cityImg" id="cityImg">
                             </span>
                         </span>
                         <input type="text" class="form-control" readonly>

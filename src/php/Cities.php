@@ -36,6 +36,37 @@ class Cities {
         catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
+    }
+    
+    public static function addCity($city, $country, $description, $attractionNames, $attractionDesc, $killerNames, $killerDesc, $userid){
+        include_once("../php/Database.php");        
+		try {
+            $db = Database::getConnection();
+
+			$file = $_FILES['cityImg']['name'];
+			$file_loc = $_FILES['cityImg']['tmp_name'];
+			$file_size = $_FILES['cityImg']['size'];
+			$file_type = $_FILES['cityImg']['type'];
+            $folder="../images/";
+
+            // new file size in KB
+			$new_size = $file_size/1024;  
+			// make file name in lower case
+			$new_file_name = strtolower($file);
+			// make file name in lower case
+			$final_file=str_replace(' ', '-', $new_file_name);
+			
+            if(move_uploaded_file($file_loc, $folder.$final_file)){
+                $queryString = "INSERT INTO `cities` (`city`, `country`, `description`, `image`) VALUES ('".$city."', '".$country."', '".$description."', '".$final_file."')";
+
+                if ($db->query($queryString) === TRUE) {
+                    echo "Success: " . $file . "<br>";
+                }
+            }
+        }
+        catch(mysqli_sql_exception $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
 	}
 }
 
