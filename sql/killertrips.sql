@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 28, 2018 at 06:23 AM
+-- Generation Time: Mar 29, 2018 at 04:45 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.0
 
@@ -87,7 +87,10 @@ INSERT INTO `comments` (`commentid`, `date`, `userid`, `comment`, `cityid`) VALU
 (3, '2018-03-28 02:55:21', 1, 'Test', 1),
 (4, '2018-03-28 03:47:52', 1, 'Test', 2),
 (5, '2018-03-28 03:50:54', 1, 'What is wrong with this dumb city', 2),
-(6, '2018-03-28 04:23:04', 1, 'Vancouver ruined my life', 2);
+(6, '2018-03-28 04:23:04', 1, 'Vancouver ruined my life', 2),
+(7, '2018-03-28 19:10:56', 1, 'I was born here and died on the same day', 1),
+(8, '2018-03-28 19:50:30', 12, 'Azn central', 4),
+(9, '2018-03-28 22:57:50', 12, 'bitch', 2);
 
 -- --------------------------------------------------------
 
@@ -122,16 +125,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`userid`, `username`, `password`, `permission`) VALUES
 (1, 'tudorbertiean', '33d890d33f91d52fc9b405a0dda65336', 'admin'),
-(2, 'tudorbertiean', '33d890d33f91d52fc9b405a0dda65336', 'full'),
-(3, 'tudorbertiean', '33d890d33f91d52fc9b405a0dda65336', 'full'),
-(4, 'tudorbertiean', '33d890d33f91d52fc9b405a0dda65336', 'full'),
-(5, 'troll', '9aeaed51f2b0f6680c4ed4b07fb1a83c', 'full'),
-(6, 'tudorbertiean111', '33d890d33f91d52fc9b405a0dda65336', 'admin'),
-(7, 'tud', '33d890d33f91d52fc9b405a0dda65336', 'admin'),
-(8, 'tudorbertieannn', '33d890d33f91d52fc9b405a0dda65336', 'admin'),
-(9, 'tudorbertieannnnnn', '33d890d33f91d52fc9b405a0dda65336', 'admin'),
-(10, 'tudorbertieandsfdfdff', '33d890d33f91d52fc9b405a0dda65336', 'admin'),
-(11, 'tudorbertieannnnnnnnnnn', '33d890d33f91d52fc9b405a0dda65336', 'admin');
+(12, 'jackstufs', '33d890d33f91d52fc9b405a0dda65336', 'admin');
 
 -- --------------------------------------------------------
 
@@ -200,13 +194,13 @@ ALTER TABLE `yummyinfo`
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `cityid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cityid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `commentid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `killinfo`
@@ -218,7 +212,7 @@ ALTER TABLE `killinfo`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `yummyinfo`
