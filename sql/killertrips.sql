@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2018 at 11:04 PM
+-- Generation Time: Mar 30, 2018 at 03:59 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -134,9 +134,9 @@ INSERT INTO `users` (`userid`, `username`, `password`, `permission`) VALUES
 
 CREATE TABLE `vote` (
   `voteid` int(11) NOT NULL,
-  `votescore` int(11) NOT NULL,
   `cityid` int(11) NOT NULL,
-  `commentid` int(11) NOT NULL
+  `commentid` int(11) NOT NULL,
+  `userid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -183,7 +183,8 @@ ALTER TABLE `users`
 ALTER TABLE `vote`
   ADD PRIMARY KEY (`voteid`),
   ADD KEY `comment` (`commentid`),
-  ADD KEY `cityid` (`cityid`);
+  ADD KEY `cityid` (`cityid`),
+  ADD KEY `userid` (`userid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -193,7 +194,7 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `cityid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cityid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `comments`
 --
@@ -232,10 +233,18 @@ ALTER TABLE `comments`
   ADD CONSTRAINT `user` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`);
 
 --
+-- Constraints for table `killinfo`
+--
+ALTER TABLE `killinfo`
+  ADD CONSTRAINT `user_kill` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`);
+
+--
 -- Constraints for table `vote`
 --
 ALTER TABLE `vote`
-  ADD CONSTRAINT `comment` FOREIGN KEY (`commentid`) REFERENCES `comments` (`commentid`);
+  ADD CONSTRAINT `city_id` FOREIGN KEY (`cityid`) REFERENCES `cities` (`cityid`),
+  ADD CONSTRAINT `comment` FOREIGN KEY (`commentid`) REFERENCES `comments` (`commentid`),
+  ADD CONSTRAINT `user_id` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
