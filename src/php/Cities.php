@@ -48,44 +48,65 @@ class Cities {
 
             if ($db->query($queryString) === TRUE) {
                 // // Insert attractions and kill info
-                $cityid = $db->insert_id;
-                $attSql = "INSERT INTO `attractions` (`name`, `description`, `cityid`, `image`) VALUES ";
-                
-                // Collect each file name so we can add to DB
-                $attractionImgs = array();
-                foreach($_FILES['attractionImg']['tmp_name'] as $key => $tmp_name){
-                    $final_file = self::saveMultipleImages('../images/attractions/', 'attractionImg', $key);
-                    $file = $_FILES['attractionImg']['name'][$key];
-                    $file_loc = $_FILES['attractionImg']['tmp_name'][$key];
-                    $file_size = $_FILES['attractionImg']['size'][$key];
-                    $file_type= $_FILES['attractionImg']['type'][$key]; 
-                    $folder="../images/attractions/";
-
-                    // new file size in KB
-                    $new_size = $file_size/1024;  
-                    // make file name in lower case
-                    $new_file_name = strtolower($file);
-                    // make file name in lower case
-                    $final_file=str_replace(' ', '-', $new_file_name);
-                    move_uploaded_file($file_loc, $folder.$final_file);
-                    array_push($attractionImgs, $final_file);
-                }
-
-                for ($i = 0; $i < count($attractionNames); $i++) {
-                    $name = $attractionNames[$i];
-                    $description = $attractionDesc[$i];
-                    $image = $attractionImgs[$i];
-
-                    $attSql = $attSql."('".$name."', '".$description."', '".$cityid."', '".$image."'), ";
-                }                    
+                self::attractionsSql($db, $attractionNames, $attractionDesc);
+                self::killInfoSql($db, $killerNames, $killerDesc, $userid);
             }
-            $db->query(rtrim($attSql,", ").";");
-            header("Location: http://localhost:8080/killer-trips/src/views/city.php?cityid=".$cityid);
+            
+            //header("Location: http://localhost:8080/killer-trips/src/views/city.php?cityid=".$cityid);
             
         }
         catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
+    }
+
+    function attractionsSql($db, $attractionNames, $attractionDesc){
+        $cityid = $db->insert_id;
+        $attSql = "INSERT INTO `attractions` (`name`, `description`, `cityid`, `image`) VALUES ";
+        
+        // Collect each file name so we can add to DB
+        $attractionImgs = array();
+        foreach($_FILES['attractionImg']['tmp_name'] as $key => $tmp_name){
+            $final_file = self::saveMultipleImages('../images/attractions/', 'attractionImg', $key);
+            $file = $_FILES['attractionImg']['name'][$key];
+            $file_loc = $_FILES['attractionImg']['tmp_name'][$key];
+            $file_size = $_FILES['attractionImg']['size'][$key];
+            $file_type= $_FILES['attractionImg']['type'][$key]; 
+            $folder="../images/attractions/";
+
+            // new file size in KB
+            $new_size = $file_size/1024;  
+            // make file name in lower case
+            $new_file_name = strtolower($file);
+            // make file name in lower case
+            $final_file=str_replace(' ', '-', $new_file_name);
+            move_uploaded_file($file_loc, $folder.$final_file);
+            array_push($attractionImgs, $final_file);
+        }
+
+        for ($i = 0; $i < count($attractionNames); $i++) {
+            $name = $attractionNames[$i];
+            $description = $attractionDesc[$i];
+            $image = $attractionImgs[$i];
+
+            $attSql = $attSql."('".$name."', '".$description."', '".$cityid."', '".$image."'), ";
+        }
+
+        $db->query(rtrim($attSql,", ").";");
+    }
+
+    function killInfoSql($db, $killerNames, $killerDesc, $userid){
+        $killSql = "INSERT INTO `killinfo` (`killname`, `killtext`, `userid`) VALUES ";
+        
+        for ($i = 0; $i < count($killerNames); $i++) {
+            $name = $killerNames[$i];
+            $description = $killerDesc[$i];
+
+            $killSql = $killSql."('".$name."', '".$description."', '".$userid."'), ";
+        }
+
+        echo rtrim($killSql,", ").";";
+        $db->query(rtrim($killSql,", ").";");
     }
     
     // Used for the attractions images that are in an array
