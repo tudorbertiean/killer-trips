@@ -27,7 +27,7 @@
                 <li><a href="http://localhost:8080/killer-trips/src/php/Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
               </ul>
               <?php
-            } else{
+            } else {
               ?>
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="http://localhost:8080/killer-trips/src/views/register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -60,12 +60,12 @@
                     <label>Upload Image</label>
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <span class="btn btn-default btn-file">
+                            <span class="btn btn-default btn-file btn-city">
                                 Browse… 
                                 <input type="file" name="cityImg" id="cityImg">
                             </span>
                         </span>
-                        <input type="text" class="form-control" readonly>
+                        <input type="text" class="form-control" placeholder="Add an image" readonly>
                     </div>
                     <p>Be mindful of the image aspect and choose a image in landscape mode for best view.</p>
                 </div> <!--/form-group-->
@@ -87,8 +87,18 @@
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Attraction Title" name="attractionNames[]" id="attractionNames[]"/>
                             <input type="text" class="form-control" placeholder="Attraction Description" rows="3" name="attractionDesc[]" id="attractionDesc[]"/>
+                            <div class="input-group">
+                              <span class="input-group-btn">
+                                  <span class="btn btn-default btn-file btn-attraction">
+                                      Browse… 
+                                      <input type="file" name="attractionImg[]" id="attractionImg[]">
+                                  </span>
+                              </span>
+                              <input type="text" class="form-control attraction-file" placeholder="Add an image" readonly>
+                            </div>
                             <span class="btn btn-success input-group-addon add-attraction glyphicon glyphicon-plus"></span>
                         </div>
+                      
                         <span class="attraction-help">Enter more attractions by pressing +</span>
                     </div>
                 </div> <!--/form-group-->

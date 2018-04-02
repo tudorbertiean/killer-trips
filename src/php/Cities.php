@@ -42,41 +42,89 @@ class Cities {
         include_once("../php/Database.php");        
 		try {
             $db = Database::getConnection();
+            
+            $final_file = self::saveSingleImage('../images/', 'cityImg');
+            $queryString = "INSERT INTO `cities` (`city`, `country`, `description`, `image`) VALUES ('".$city."', '".$country."', '".$description."', '".$final_file."')";
 
-			$file = $_FILES['cityImg']['name'];
-			$file_loc = $_FILES['cityImg']['tmp_name'];
-			$file_size = $_FILES['cityImg']['size'];
-			$file_type = $_FILES['cityImg']['type'];
-            $folder="../images/";
+            if ($db->query($queryString) === TRUE) {
+                // // Insert attractions and kill info
+                $cityid = $db->insert_id;
+                $attSql = "INSERT INTO `attractions` (`name`, `description`, `cityid`, `image`) VALUES ";
+                
+                // Collect each file name so we can add to DB
+                $attractionImgs = array();
+                foreach($_FILES['attractionImg']['tmp_name'] as $key => $tmp_name){
+                    $final_file = self::saveMultipleImages('../images/attractions/', 'attractionImg', $key);
+                    $file = $_FILES['attractionImg']['name'][$key];
+                    $file_loc = $_FILES['attractionImg']['tmp_name'][$key];
+                    $file_size = $_FILES['attractionImg']['size'][$key];
+                    $file_type= $_FILES['attractionImg']['type'][$key]; 
+                    $folder="../images/attractions/";
 
-            // new file size in KB
-			$new_size = $file_size/1024;  
-			// make file name in lower case
-			$new_file_name = strtolower($file);
-			// make file name in lower case
-			$final_file=str_replace(' ', '-', $new_file_name);
-			
-            if(move_uploaded_file($file_loc, $folder.$final_file)) {
-                $queryString = "INSERT INTO `cities` (`city`, `country`, `description`, `image`) VALUES ('".$city."', '".$country."', '".$description."', '".$final_file."')";
-
-                if ($db->query($queryString) === TRUE) {
-                    // // Insert attractions and kill info
-                    $cityid = $db->insert_id;
-                    $attSql = "INSERT INTO `attractions` (`name`, `description`, `cityid`) VALUES ";
-                    for ($i = 0; $i < count($attractionNames); $i++) {
-                        $name = $attractionNames[$i];
-                        $description = $attractionDesc[$i];
-                        $attSql = $attSql."('".$name."', '".$description."', '".$cityid."'), ";
-                    }
-                    $db->query(rtrim($attSql,", ").";");
-                    header("Location: http://localhost:8080/killer-trips/src/views/city.php?cityid=".$cityid);
+                    // new file size in KB
+                    $new_size = $file_size/1024;  
+                    // make file name in lower case
+                    $new_file_name = strtolower($file);
+                    // make file name in lower case
+                    $final_file=str_replace(' ', '-', $new_file_name);
+                    move_uploaded_file($file_loc, $folder.$final_file);
+                    array_push($attractionImgs, $final_file);
                 }
+
+                for ($i = 0; $i < count($attractionNames); $i++) {
+                    $name = $attractionNames[$i];
+                    $description = $attractionDesc[$i];
+                    $image = $attractionImgs[$i];
+
+                    $attSql = $attSql."('".$name."', '".$description."', '".$cityid."', '".$image."'), ";
+                }                    
             }
+            $db->query(rtrim($attSql,", ").";");
+            header("Location: http://localhost:8080/killer-trips/src/views/city.php?cityid=".$cityid);
+            
         }
         catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
-	}
+    }
+    
+    // Used for the attractions images that are in an array
+    function saveMultipleImages($folder, $file, $key) {
+        $file_name = $_FILES[$file]['name'][$key];
+        $file_loc = $_FILES[$file]['tmp_name'][$key];
+        $file_size = $_FILES[$file]['size'][$key];
+        $file_type = $_FILES[$file]['type'][$key];
+ 
+        // make file name in lower case
+        $new_file_name = strtolower($file_name);
+        // remove any spaces and replace with `-`
+        $final_file=str_replace(' ', '-', $new_file_name);
+
+        if (move_uploaded_file($file_loc, $folder.$final_file)){
+            return $final_file;
+        }
+        
+        return "error.jpg";
+    }
+
+    // Used for city image which is not in an array
+    function saveSingleImage($folder, $file) {
+        $file_name = $_FILES[$file]['name'];
+        $file_loc = $_FILES[$file]['tmp_name'];
+        $file_size = $_FILES[$file]['size'];
+        $file_type = $_FILES[$file]['type'];
+ 
+        // make file name in lower case
+        $new_file_name = strtolower($file_name);
+        // remove any spaces and replace with `-`
+        $final_file=str_replace(' ', '-', $new_file_name);
+
+        if (move_uploaded_file($file_loc, $folder.$final_file)){
+            return $final_file;
+        }
+        
+        return "error.jpg";
+    }
 }
 
 ?>
