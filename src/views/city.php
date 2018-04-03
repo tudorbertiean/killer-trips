@@ -75,7 +75,6 @@
             
             <p class="votescore" style="color: <?PHP echo ($votescore >= 0)? 'green': 'red'; ?>"><?php echo $votescore?></p>
             <span class="voteicon" style="color: <?PHP echo ($votescore >= 0)? 'green': 'red'; ?>"><i class="glyphicon <?PHP echo ($votescore >= 0)? 'glyphicon-thumbs-up': 'glyphicon-thumbs-down'; ?>"></i></span>
-            
             <?php
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
                 ?>
@@ -90,6 +89,7 @@
               <?php
             }
             ?>
+            <br>
             <br>
 
             <div class="jumbotron" style="background-image: url(../images/<?php echo $city["image"]?>);"></div>

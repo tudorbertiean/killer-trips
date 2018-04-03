@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    include("../php/Comments.php");
+    include("../php/Votes.php");                   
+?>
 <!DOCTYPE html>
     <head> 
         <title>Killer Trips</title>
@@ -16,7 +21,6 @@
             <li class="active"><a href="homepage.php">Home</a></li>
           </ul>
           <?php
-          session_start();
           if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
               ?>
             <ul class="nav navbar-nav">
@@ -70,12 +74,17 @@
 
                 for($x = 0; $x < $arrlength; $x++) {
                   $city = $cities[$x];
+                  $votescore = Votes::getVotesForCity($city["cityid"]); 
+                  $comments = Comments::getNumComments($city["cityid"]);
                   ?>
                   <div class="col-6 col-lg-4 city">
                     <h3><?php echo $city['city']?></h3>
                     <img src=<?php echo "../images/".$city['image']?> alt="" />
                     <p class="description"><?php echo $city['description']?></p>
-                    <p style="color:green;float:left;"><span class="glyphicon glyphicon-thumbs-up"></span></p>
+                    <p class="votescore" style="color: <?PHP echo ($votescore >= 0)? 'green': 'red'; ?>"><?php echo $votescore?></p>
+                    <span class="voteicon" style="color: <?PHP echo ($votescore >= 0)? 'green': 'red'; ?>"><i class="glyphicon <?PHP echo ($votescore >= 0)? 'glyphicon-thumbs-up': 'glyphicon-thumbs-down'; ?>"></i></span>
+                    <p class="votescore" ><?php echo $comments?></p>
+                    <span class="voteicon"><i class="glyphicon glyphicon-envelope"></i></span>                    
                     <p style="float:left;"><a class="btn btn-secondary" href="http://localhost:8080/killer-trips/src/views/city.php?cityid=<?php echo $city['cityid']?>" role="button">See more &raquo;</a></p>
                   </div>
                   <?php
