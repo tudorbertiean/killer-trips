@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2018 at 06:23 AM
+-- Generation Time: Apr 03, 2018 at 07:38 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -41,7 +41,8 @@ CREATE TABLE `attractions` (
 
 INSERT INTO `attractions` (`attractionid`, `image`, `name`, `description`, `cityid`, `date`) VALUES
 (23, 'michael.jpg', 'St. Michael\'s Church', 'Very Pretty Church. No Gypsies Here. Thank God', 46, '2018-04-02 22:21:15'),
-(24, 'salt.jpg', 'The Salt Mines', 'Salina Turda. Salt Mine converted to an amusement park', 46, '2018-04-02 22:21:15');
+(24, 'salt.jpg', 'The Salt Mines', 'Salina Turda. Salt Mine converted to an amusement park', 46, '2018-04-02 22:21:15'),
+(25, 'bnp.jpg', 'Banff National Park', 'Oldest national park in Canada', 47, '2018-04-03 17:21:52');
 
 -- --------------------------------------------------------
 
@@ -63,7 +64,8 @@ CREATE TABLE `cities` (
 --
 
 INSERT INTO `cities` (`cityid`, `city`, `description`, `country`, `image`, `date`) VALUES
-(46, 'Cluj', 'City in Transylvania Romania.', 'Romania', '207660.jpg', '2018-04-02 22:21:15');
+(46, 'Cluj', 'City in Transylvania Romania.', 'Romania', '207660.jpg', '2018-04-02 22:21:15'),
+(47, 'Banff', 'Resort town in the Rocky Mountains of Alberta', 'Canada', 'banff.jpg', '2018-04-03 17:21:52');
 
 -- --------------------------------------------------------
 
@@ -84,8 +86,7 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`commentid`, `date`, `userid`, `comment`, `cityid`) VALUES
-(10, '2018-04-03 02:33:37', 13, 'Test', 46),
-(11, '2018-04-03 02:40:43', 15, 'U suck tud', 46);
+(12, '2018-04-03 17:12:15', 16, 'Very nice place\r\n', 46);
 
 -- --------------------------------------------------------
 
@@ -108,7 +109,9 @@ CREATE TABLE `killinfo` (
 INSERT INTO `killinfo` (`killid`, `cityid`, `date`, `killtext`, `killname`) VALUES
 (24, 46, '2018-04-02 22:21:15', 'Transylvania is home to the vampire dracula. He may be old now but he still is very scary', 'Vampires'),
 (25, 46, '2018-04-02 22:21:15', 'My Nonna was attacked by a hoard of gypsies getting off the train last week. Very scary', 'Gypsies'),
-(26, 46, '2018-04-02 22:21:15', 'The wolves have returned to our village this winter. The first time in 5 years, we had become complacent, forgetting their might and persistence. Many have perished. Many more still will.', 'Wolves');
+(26, 46, '2018-04-02 22:21:15', 'The wolves have returned to our village this winter. The first time in 5 years, we had become complacent, forgetting their might and persistence. Many have perished. Many more still will.', 'Wolves'),
+(27, 47, '2018-04-03 17:21:52', 'Being buried alive in snow is very scary', 'Avalanches'),
+(28, 47, '2018-04-03 17:34:19', 'There are many people skiing in banff and many trees. A recipe for disaster', 'Skiing into a Tree');
 
 -- --------------------------------------------------------
 
@@ -210,7 +213,9 @@ INSERT INTO `vote` (`voteid`, `cityid`, `userid`, `score`) VALUES
 (58, 46, 1, -1),
 (59, 46, 1, -1),
 (60, 46, 14, 1),
-(64, 46, 13, -1);
+(64, 46, 13, -1),
+(65, 46, 16, 1),
+(66, 46, 16, 1);
 
 --
 -- Indexes for dumped tables
@@ -266,22 +271,22 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT for table `attractions`
 --
 ALTER TABLE `attractions`
-  MODIFY `attractionid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `attractionid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `cityid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `cityid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `commentid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `killinfo`
 --
 ALTER TABLE `killinfo`
-  MODIFY `killid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `killid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -291,7 +296,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `voteid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `voteid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 --
 -- Constraints for dumped tables
 --
