@@ -15,6 +15,7 @@
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header">
+            <a href="homepage.php" class="navbar-left"><img style="width: 50px; height:50px; margin-right: 10px;" src="../images/logo.jpg"></a>
             <a class="navbar-brand" href="homepage.php">Killer Trips</a>
           </div>
           <ul class="nav navbar-nav">
