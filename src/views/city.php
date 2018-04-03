@@ -211,5 +211,20 @@
         </div><!--/row-->
         <hr>
       </div><!--/.container-->
+      <!-- Call rate function in php -->
+      <script type="text/javascript">
+        $('.up-button').click(function() {
+          if ($(this).hasClass('disabled')) {
+          }else{
+            window.location.href = "http://localhost:8080/killer-trips/src/php/AddRating.php?userid=<?php echo $userid ?>&cityid=<?php echo $cityid ?>&score=1";
+          }
+        });
+        $('.down-button').click(function() {
+          if ($(this).hasClass('disabled')) {
+          }else{
+            window.location.href = "http://localhost:8080/killer-trips/src/php/AddRating.php?userid=<?php echo $userid ?>&cityid=<?php echo $cityid ?>&score=-1";
+          }
+        });
+      </script>
     </body>
 </html>

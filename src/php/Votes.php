@@ -43,7 +43,7 @@ class Votes {
         include_once("../php/Database.php");        
 		try {
             $db = Database::getConnection();
-            $queryString = "INSERT INTO `votes` (`cityid`, `userid`, `score`) VALUES ('".$cityid."', '".$userid."', '".$vote."')";
+            $queryString = "INSERT INTO `vote` (`cityid`, `userid`, `score`) VALUES ('".$cityid."', '".$userid."', '".$vote."')";
             $result = $db->query($queryString);
         }
         catch(mysqli_sql_exception $e){
