@@ -160,7 +160,7 @@
                   ?>
                   <div class="col-6 col-lg-4 city">
                     <strong><span class="badge progress-bar-danger"><?php echo $info['killname']?></span></strong>
-                    <p class="description"><?php echo $info['killtext']?></p>
+                    <p class="kill-description"><?php echo $info['killtext']?></p>
                   </div>
                   <?php
                 }                  
