@@ -48,11 +48,12 @@ class Cities {
 
             if ($db->query($queryString) === TRUE) {
                 // // Insert attractions and kill info
-                self::attractionsSql($db, $attractionNames, $attractionDesc);
-                self::killInfoSql($db, $killerNames, $killerDesc, $userid);
+                $cityid = $db->insert_id;
+                self::attractionsSql($db, $attractionNames, $attractionDesc, $cityid);
+                self::killInfoSql($db, $killerNames, $killerDesc, $cityid);
             }
             
-            //header("Location: http://localhost:8080/killer-trips/src/views/city.php?cityid=".$cityid);
+            header("Location: http://localhost:8080/killer-trips/src/views/city.php?cityid=".$cityid);
             
         }
         catch(mysqli_sql_exception $e){
@@ -60,8 +61,7 @@ class Cities {
         }
     }
 
-    function attractionsSql($db, $attractionNames, $attractionDesc){
-        $cityid = $db->insert_id;
+    function attractionsSql($db, $attractionNames, $attractionDesc, $cityid){
         $attSql = "INSERT INTO `attractions` (`name`, `description`, `cityid`, `image`) VALUES ";
         
         // Collect each file name so we can add to DB
@@ -95,17 +95,16 @@ class Cities {
         $db->query(rtrim($attSql,", ").";");
     }
 
-    function killInfoSql($db, $killerNames, $killerDesc, $userid){
-        $killSql = "INSERT INTO `killinfo` (`killname`, `killtext`, `userid`) VALUES ";
+    function killInfoSql($db, $killerNames, $killerDesc, $cityid){
+        $killSql = "INSERT INTO `killinfo` (`killname`, `killtext`, `cityid`) VALUES ";
         
         for ($i = 0; $i < count($killerNames); $i++) {
             $name = $killerNames[$i];
             $description = $killerDesc[$i];
 
-            $killSql = $killSql."('".$name."', '".$description."', '".$userid."'), ";
+            $killSql = $killSql."('".$name."', '".$description."', '".$cityid."'), ";
         }
 
-        echo rtrim($killSql,", ").";";
         $db->query(rtrim($killSql,", ").";");
     }
     

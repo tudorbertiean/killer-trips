@@ -1,8 +1,15 @@
 <?php
     session_start();
     include("../php/Cities.php");
+    include("../php/Attractions.php");
+    include("../php/KillInfo.php");
     include("../php/Comments.php");
-    $city = Cities::getCityById($_GET["cityid"]); 
+    include("../php/Votes.php");
+    $city = Cities::getCityById($_GET["cityid"]);
+    $hasvoted = Votes::hasUserVoted($_GET["cityid"], $_SESSION['userid']);                     
+    $votescore = Votes::getVotesForCity($_GET["cityid"]);                     
+    $attractions = Attractions::getAttractionsForCity($_GET["cityid"]);                     
+    $killinfo = KillInfo::getKillInfoForCity($_GET["cityid"]);                     
     $comments = Comments::getCommentsForCity($_GET["cityid"]);                     
 ?>
 <!DOCTYPE html>
@@ -66,44 +73,66 @@
             <h1><?php echo $city["city"]?></h1>
             <h4><?php echo $city["country"]?></h4>
             
-            <p><?php echo $city["votescore"]?></p>
-            <button class="btn btn-default" type="submit">
-                <i class="glyphicon glyphicon-thumbs-up"></i>
-            </button>
-            <button class="btn btn-default" type="submit">
-                <i class="glyphicon glyphicon-thumbs-down"></i>
-            </button>
-
+            <p class="votescore" style="color: <?PHP echo ($votescore >= 0)? 'green': 'red'; ?>"><?php echo $votescore?></p>
+            <span class="voteicon" style="color: <?PHP echo ($votescore >= 0)? 'green': 'red'; ?>"><i class="glyphicon <?PHP echo ($votescore >= 0)? 'glyphicon-thumbs-up': 'glyphicon-thumbs-down'; ?>"></i></span>
+            
+            <?php
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+                ?>
+              <div class="votebuttons">
+                <button class="btn btn-default up-button <?PHP echo ($hasvoted == 1)? "disabled hasvoted":(($hasvoted==-1)?"disabled":""); ?>" type="submit">
+                    <i class="glyphicon glyphicon-thumbs-up"></i>
+                </button>
+                <button class="btn btn-default down-button <?PHP echo ($hasvoted == 1)? "disabled":(($hasvoted==-1)?"disabled hasvoted":""); ?>" type="submit">
+                    <i class="glyphicon glyphicon-thumbs-down"></i>
+                </button>
+              </div>
+              <?php
+            }
+            ?>
             <br>
 
             <div class="jumbotron" style="background-image: url(../images/<?php echo $city["image"]?>);"></div>
             <h2>Description:</h2>
             <p><?php echo $city["description"]?></p>
             
-            <h2>Attractions:</h2>
+            <br>
+            <br>
 
+            <h2>Attractions:</h2>
+            
             <div id="attractionCarousel" class="carousel slide" data-interval="false">
               <!-- Indicators -->
               <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <?php
+                    $arrlength = count($attractions);
+
+                    for($x = 0; $x < $arrlength; $x++) {
+                      ?>
+                      <li data-target="#myCarousel" data-slide-to="<?php $x ?>" class="<?PHP echo ($x == 0)? 'active': ''; ?>"></li>
+                      <?php
+                    } 
+                ?>
               </ol>
               <!-- Wrapper for slides -->
               <div class="carousel-inner">
-                <div class="item active">
-                  <img src="../images/toronto.jpg">
-                  <div class="carousel-caption">
-                    <h3>Toronto</h3>
-                    <p>Blah blah blah</p>
-                  </div>
-                </div>
-                <div class="item">
-                  <img src="../images/vancouver.jpg">
-                  <div class="carousel-caption">
-                    <h3>Vancouver</h3>
-                    <p>Blah blah blah</p>
-                  </div>
-                </div>
+              <?php
+                    $arrlength = count($attractions);
+
+                    for($x = 0; $x < $arrlength; $x++) {
+                      $attraction = $attractions[$x];
+                      ?>
+                      <div class="item <?PHP echo ($x == 0)? 'active': ''; ?>">
+                        <img src="../images/attractions/<?php echo $attraction['image'] ?>">
+                        <div class="carousel-caption">
+                          <h3><?php echo $attraction["name"]?></h3>
+                          <p><?php echo $attraction['description'] ?></p>
+                        </div>
+                      </div>
+                    <?php
+                    } 
+                ?>
+                
               </div>
 
               <!-- Left and right controls -->
@@ -116,9 +145,31 @@
                 <span class="sr-only">Next</span>
               </a>
             </div>
+            
+            <br>
+            <br>
+            <br>
 
             <h2>Things That May Kill You:</h2>
+            <div class="row">
+              <?php
+                $arrlength = count($killinfo);
 
+                for($x = 0; $x < $arrlength; $x++) {
+                  $info = $killinfo[$x];
+                  ?>
+                  <div class="col-6 col-lg-4 city">
+                    <strong><span class="badge progress-bar-danger"><?php echo $info['killname']?></span></strong>
+                    <p class="description"><?php echo $info['killtext']?></p>
+                  </div>
+                  <?php
+                }                  
+              ?>
+            </div><!--/row-->      
+            
+            <br>
+            <br>
+            
             <h2>Comments:</h2>
             
             <?php
@@ -130,7 +181,7 @@
                 <div class="form-group">
                   <label for="comment">Comment:</label>
                   <textarea class="form-control" rows="5" name="comment" id="comment"></textarea>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button style="margin-top:5px;" type="submit" class="btn btn-primary">Post</button>
                 </div>
               </form>
               <?php

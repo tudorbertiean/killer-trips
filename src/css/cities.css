@@ -41,3 +41,57 @@
         background-color: rgba(0, 0, 0, 0.6);
     }
 }
+
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
+
+.badge {
+    font-size: 20px;
+}
+
+.votescore {
+    float: left;
+    margin-top: 8px;
+    margin-right: 3px;
+}
+
+.voteicon {
+    margin-top: 8px;
+    margin-right: 10px;
+    float: left;
+}
+
+.btn-default.disabled:hover {
+    color: #000;
+}
+
+.up-button:hover {
+    color: white;
+    background-color: #2ecc71;
+}
+
+.up-button.hasvoted {
+    color: white;
+    background-color: #2ecc71;
+}
+
+.up-button.hasvoted:hover {
+    color: white;
+    background-color: #2ecc71;
+}
+
+.down-button:hover {
+    color: white;
+    background-color: #c0392b;
+}
+
+.down-button.hasvoted {
+    color: white;
+    background-color: #c0392b;
+}
+
+.down-button.hasvoted:hover {
+    color: white;
+    background-color: #c0392b;
+}

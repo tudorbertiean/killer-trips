@@ -75,7 +75,7 @@
                     <h3><?php echo $city['city']?></h3>
                     <img src=<?php echo "../images/".$city['image']?> alt="" />
                     <p class="description"><?php echo $city['description']?></p>
-                    <p style="color:green;float:left;"><?php echo $city['votescore']?> <span class="glyphicon glyphicon-thumbs-up"></span></p>
+                    <p style="color:green;float:left;"><span class="glyphicon glyphicon-thumbs-up"></span></p>
                     <p style="float:left;"><a class="btn btn-secondary" href="http://localhost:8080/killer-trips/src/views/city.php?cityid=<?php echo $city['cityid']?>" role="button">See more &raquo;</a></p>
                   </div>
                   <?php
