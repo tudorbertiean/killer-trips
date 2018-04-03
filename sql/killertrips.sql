@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 03, 2018 at 06:00 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.0
+-- Host: 127.0.0.1
+-- Generation Time: Apr 03, 2018 at 06:23 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -42,8 +40,8 @@ CREATE TABLE `attractions` (
 --
 
 INSERT INTO `attractions` (`attractionid`, `image`, `name`, `description`, `cityid`, `date`) VALUES
-(23, 'chargers.jpg', 'Salt cave', 'So much salt it can feed the country', 46, '2018-04-02 22:21:15'),
-(24, '207660.jpg', 'Bat Cave', 'So salty', 46, '2018-04-02 22:21:15');
+(23, 'michael.jpg', 'St. Michael\'s Church', 'Very Pretty Church. No Gypsies Here. Thank God', 46, '2018-04-02 22:21:15'),
+(24, 'salt.jpg', 'The Salt Mines', 'Salina Turda. Salt Mine converted to an amusement park', 46, '2018-04-02 22:21:15');
 
 -- --------------------------------------------------------
 
@@ -108,9 +106,9 @@ CREATE TABLE `killinfo` (
 --
 
 INSERT INTO `killinfo` (`killid`, `cityid`, `date`, `killtext`, `killname`) VALUES
-(24, 46, '2018-04-02 22:21:15', 'Desc 1', 'Kill 1'),
-(25, 46, '2018-04-02 22:21:15', 'Deck 2', 'Kill 2'),
-(26, 46, '2018-04-02 22:21:15', 'Desc 3', 'Kill 3');
+(24, 46, '2018-04-02 22:21:15', 'Transylvania is home to the vampire dracula. He may be old now but he still is very scary', 'Vampires'),
+(25, 46, '2018-04-02 22:21:15', 'My Nonna was attacked by a hoard of gypsies getting off the train last week. Very scary', 'Gypsies'),
+(26, 46, '2018-04-02 22:21:15', 'The wolves have returned to our village this winter. The first time in 5 years, we had become complacent, forgetting their might and persistence. Many have perished. Many more still will.', 'Wolves');
 
 -- --------------------------------------------------------
 
@@ -134,7 +132,8 @@ INSERT INTO `users` (`userid`, `username`, `password`, `permission`) VALUES
 (12, 'jackstufs', '33d890d33f91d52fc9b405a0dda65336', 'admin'),
 (13, 'tud', '33d890d33f91d52fc9b405a0dda65336', 'admin'),
 (14, 'tttt', '33d890d33f91d52fc9b405a0dda65336', 'admin'),
-(15, 'tuuuud', '33d890d33f91d52fc9b405a0dda65336', 'admin');
+(15, 'tuuuud', '33d890d33f91d52fc9b405a0dda65336', 'admin'),
+(16, 'babaganoush', '8434d496f6da2e2d3fe2968691b22d87', 'admin');
 
 -- --------------------------------------------------------
 
@@ -268,37 +267,31 @@ ALTER TABLE `vote`
 --
 ALTER TABLE `attractions`
   MODIFY `attractionid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
 --
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
   MODIFY `cityid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
-
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
   MODIFY `commentid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
 --
 -- AUTO_INCREMENT for table `killinfo`
 --
 ALTER TABLE `killinfo`
   MODIFY `killid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `vote`
 --
 ALTER TABLE `vote`
   MODIFY `voteid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
-
 --
 -- Constraints for dumped tables
 --
@@ -328,7 +321,6 @@ ALTER TABLE `killinfo`
 ALTER TABLE `vote`
   ADD CONSTRAINT `city_id` FOREIGN KEY (`cityid`) REFERENCES `cities` (`cityid`),
   ADD CONSTRAINT `user_id` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
