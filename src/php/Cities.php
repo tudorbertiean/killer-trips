@@ -43,7 +43,7 @@ class Cities {
         include_once("../php/Database.php");        
 		try {
             $db = Database::getConnection();
-            $queryString = "SELECT * FROM `cities` WHERE city LIKE '%$keyword%' or description LIKE '%$keyword%';";
+            $queryString = "SELECT * FROM `cities` WHERE city LIKE '%$keyword%' or description LIKE '%$keyword%' or country LIKE '%$keyword%';";
             $result = $db->query($queryString);
             $num_rows = $result->num_rows;
             $rows = array();
