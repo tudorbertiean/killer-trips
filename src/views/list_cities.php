@@ -51,6 +51,16 @@
               <?php
             }
             ?>
+            <form class="navbar-form navbar-left" method="get" action="list_cities.php">
+              <div class="input-group">
+                <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </button>
+                </div>
+              </div>
+          </form>
         </div>
       </nav>
       <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
