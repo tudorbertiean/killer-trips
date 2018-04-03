@@ -23,7 +23,7 @@
             <a class="navbar-brand" href="homepage.php">Killer Trips</a>
           </div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="homepage.php">Home</a></li>
+            <li><a href="homepage.php">Home</a></li>
           </ul>
           <?php
           if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
