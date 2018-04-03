@@ -1,0 +1,23 @@
+.description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+ .city img {
+     width:400px;
+     height: 200px;
+ }
+
+ .votescore {
+    float: left;
+    margin-top: 8px;
+    margin-right: 3px;
+}
+
+.voteicon {
+    margin-top: 8px;
+    margin-right: 10px;
+    float: left;
+}

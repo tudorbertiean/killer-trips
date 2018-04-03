@@ -15,6 +15,7 @@ class Cities {
         catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
+
         return $rows;
     }
     
@@ -36,6 +37,25 @@ class Cities {
         catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
+    }
+
+    public static function getCitiesByKeyword($keyword){
+        include_once("../php/Database.php");        
+		try {
+            $db = Database::getConnection();
+            $queryString = "SELECT * FROM `cities` WHERE city LIKE '%$keyword%' or description LIKE '%$keyword%';";
+            $result = $db->query($queryString);
+            $num_rows = $result->num_rows;
+            $rows = array();
+            while ($row = $result->fetch_assoc()) {
+                array_push($rows, $row);
+            } 
+        }
+        catch(mysqli_sql_exception $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+        return array($rows, $num_rows);
     }
     
     public static function addCity($city, $country, $description, $attractionNames, $attractionDesc, $killerNames, $killerDesc, $userid){

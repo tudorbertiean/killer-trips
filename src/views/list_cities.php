@@ -1,15 +1,19 @@
 <?php
     session_start();
+    include("../php/Cities.php");
     include("../php/Comments.php");
-    include("../php/Votes.php");                   
+    include("../php/Votes.php");
+    $keyword = $_GET["keyword"];
+    $cities = Cities::getCitiesByKeyword($keyword)[0];
+    $num_cities = Cities::getCitiesByKeyword($keyword)[1];
 ?>
 <!DOCTYPE html>
     <head> 
-        <title>Killer Trips</title>
+        <title>List of Cities</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>        
-        <link rel="stylesheet" href="../css/cities.css">
+        <link rel="stylesheet" href="../css/list_cities.css">
     </head>
     <body>
       <nav class="navbar navbar-default">
@@ -46,16 +50,6 @@
               <?php
             }
             ?>
-          <form class="navbar-form navbar-left" method="get" action="list_cities.php">
-            <div class="input-group">
-              <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search">
-              <div class="input-group-btn">
-                <button class="btn btn-default" type="submit">
-                  <i class="glyphicon glyphicon-search"></i>
-                </button>
-              </div>
-            </div>
-          </form>
         </div>
       </nav>
       <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
@@ -63,13 +57,8 @@
       <div class="container">
         <div class="row row-offcanvas row-offcanvas-right">
           <div class="col-md-offset-2 col-md-8">
-            <h1>Welcome to Killer Trips!</h1>
-            <div class="jumbotron" style="background-image: url(../images/toronto-skyline.jpg"></div>
-            <h2>View the most recent city entries below:</h2>
-            <div class="row">
-              <?php
-                include_once("../php/Cities.php");
-                $cities = Cities::getNumCities();
+            <h1><?php echo $num_cities ?> Citie(s) Found With Keyword '<?php echo $keyword ?>':</h1>
+            <?php
                 $arrlength = count($cities);
 
                 for($x = 0; $x < $arrlength; $x++) {
@@ -77,34 +66,25 @@
                   $votescore = Votes::getVotesForCity($city["cityid"]); 
                   $comments = Comments::getNumComments($city["cityid"]);
                   ?>
-                  <div class="col-6 col-lg-4 city">
-                    <h3><?php echo $city['city']?></h3>
-                    <img src=<?php echo "../images/".$city['image']?> alt="" />
-                    <p class="description"><?php echo $city['description']?></p>
-                    <p class="votescore" style="color: <?PHP echo ($votescore >= 0)? 'green': 'red'; ?>"><?php echo $votescore?></p>
-                    <span class="voteicon" style="color: <?PHP echo ($votescore >= 0)? 'green': 'red'; ?>"><i class="glyphicon <?PHP echo ($votescore >= 0)? 'glyphicon-thumbs-up': 'glyphicon-thumbs-down'; ?>"></i></span>
-                    <p class="votescore" ><?php echo $comments?></p>
-                    <span class="voteicon"><i class="glyphicon glyphicon-envelope"></i></span>                    
-                    <p style="float:left;"><a class="btn btn-secondary" href="http://localhost:8080/killer-trips/src/views/city.php?cityid=<?php echo $city['cityid']?>" role="button">See more &raquo;</a></p>
+                  <div class="row">
+                    <div class="col-6 col-lg-4 city">
+                        <h3><?php echo $city['city']?></h3>
+                        <img src=<?php echo "../images/".$city['image']?> alt="" />
+                        <p class="description"><?php echo $city['description']?></p>
+                        <p class="votescore" style="color: <?PHP echo ($votescore >= 0)? 'green': 'red'; ?>"><?php echo $votescore?></p>
+                        <span class="voteicon" style="color: <?PHP echo ($votescore >= 0)? 'green': 'red'; ?>"><i class="glyphicon <?PHP echo ($votescore >= 0)? 'glyphicon-thumbs-up': 'glyphicon-thumbs-down'; ?>"></i></span>
+                        <p class="votescore" ><?php echo $comments?></p>
+                        <span class="voteicon"><i class="glyphicon glyphicon-envelope"></i></span>                    
+                        <p style="float:left;"><a class="btn btn-secondary" href="http://localhost:8080/killer-trips/src/views/city.php?cityid=<?php echo $city['cityid']?>" role="button">See more &raquo;</a></p>
+                    </div>
                   </div>
+                  <hr>
                   <?php
                 }                  
               ?>
             </div><!--/row-->
           </div><!--/span-->
         </div><!--/row-->
-        <hr>
-        <?php
-          if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-              ?>
-              <p>Don't see a city listed? Click on create in the navigation bar and add it!</p>
-          <?php
-            } else {
-              ?>
-                <p>Login/Register to have the ability to add new city entries!</p>
-              <?php
-            }
-          ?>
       </div><!--/.container-->
     </body>
 </html>

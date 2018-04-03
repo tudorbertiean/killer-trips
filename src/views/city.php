@@ -55,9 +55,9 @@
                 <?php
               }
             ?>
-          <form class="navbar-form navbar-left" action="/action_page.php">
+          <form class="navbar-form navbar-left" method="get" action="list_cities.php">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search">
               <div class="input-group-btn">
                 <button class="btn btn-default" type="submit">
                   <i class="glyphicon glyphicon-search"></i>
@@ -224,7 +224,7 @@
           }else{
             window.location.href = "http://localhost:8080/killer-trips/src/php/AddRating.php?userid=<?php echo $userid ?>&cityid=<?php echo $cityid ?>&score=-1";
           }
-        });
+         });
       </script>
     </body>
 </html>

@@ -38,7 +38,7 @@
 @media screen and (min-width: 768px){
     .carousel-caption { 
         color: #fff;
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: rgba(0, 0, 0, 0.2);
     }
 }
 
