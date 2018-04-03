@@ -201,7 +201,7 @@
                         <div class="panel panel-white panel-shadow">
                             <p><b><?php echo $user["username"]?></b></p>
                             <p><i><?php echo $comment["date"]?></i></p>
-                            <p><?php echo $comment["comment"]?></p>
+                            <p><?php echo strip_tags($comment["comment"],"?")?></p>
                         </div>
                     </div>
                     <?php
