@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2018 at 05:13 PM
+-- Generation Time: Apr 04, 2018 at 05:44 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -46,7 +46,9 @@ INSERT INTO `attractions` (`attractionid`, `image`, `name`, `description`, `city
 (27, 'skydome.jpg', 'Sky Dome', 'Baseball is played here', 49, '2018-04-03 19:47:35'),
 (28, 'everglades.jpg', 'Everglades National Park', 'Large swamp wetland in Southern Florida', 50, '2018-04-03 20:01:45'),
 (29, 'opera.jpg', 'Sydney Opera House', '', 51, '2018-04-03 20:19:29'),
-(30, 'sila.jpg', 'La Sila', 'Natural, mountainous area ', 52, '2018-04-03 20:32:19');
+(30, 'sila.jpg', 'La Sila', 'Natural, mountainous area ', 52, '2018-04-03 20:32:19'),
+(31, 'bondi.jpg', 'Bondi Beach', 'Popular beach in Sydney', 51, '2018-04-04 15:43:07'),
+(32, 'seaquarium.jpg', 'Miami Seaquarium', 'Home of many sea creatures. Such as Orcas', 50, '2018-04-04 15:44:10');
 
 -- --------------------------------------------------------
 
@@ -289,7 +291,7 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT for table `attractions`
 --
 ALTER TABLE `attractions`
-  MODIFY `attractionid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `attractionid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `cities`
 --
