@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2018 at 07:38 PM
+-- Generation Time: Apr 04, 2018 at 05:13 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -42,7 +42,11 @@ CREATE TABLE `attractions` (
 INSERT INTO `attractions` (`attractionid`, `image`, `name`, `description`, `cityid`, `date`) VALUES
 (23, 'michael.jpg', 'St. Michael\'s Church', 'Very Pretty Church. No Gypsies Here. Thank God', 46, '2018-04-02 22:21:15'),
 (24, 'salt.jpg', 'The Salt Mines', 'Salina Turda. Salt Mine converted to an amusement park', 46, '2018-04-02 22:21:15'),
-(25, 'bnp.jpg', 'Banff National Park', 'Oldest national park in Canada', 47, '2018-04-03 17:21:52');
+(25, 'bnp.jpg', 'Banff National Park', 'Oldest national park in Canada', 47, '2018-04-03 17:21:52'),
+(27, 'skydome.jpg', 'Sky Dome', 'Baseball is played here', 49, '2018-04-03 19:47:35'),
+(28, 'everglades.jpg', 'Everglades National Park', 'Large swamp wetland in Southern Florida', 50, '2018-04-03 20:01:45'),
+(29, 'opera.jpg', 'Sydney Opera House', '', 51, '2018-04-03 20:19:29'),
+(30, 'sila.jpg', 'La Sila', 'Natural, mountainous area ', 52, '2018-04-03 20:32:19');
 
 -- --------------------------------------------------------
 
@@ -65,7 +69,11 @@ CREATE TABLE `cities` (
 
 INSERT INTO `cities` (`cityid`, `city`, `description`, `country`, `image`, `date`) VALUES
 (46, 'Cluj', 'City in Transylvania Romania.', 'Romania', '207660.jpg', '2018-04-02 22:21:15'),
-(47, 'Banff', 'Resort town in the Rocky Mountains of Alberta', 'Canada', 'banff.jpg', '2018-04-03 17:21:52');
+(47, 'Banff', 'Resort town in the Rocky Mountains of Alberta', 'Canada', 'banff.jpg', '2018-04-03 17:21:52'),
+(49, 'Toronto', 'Capital of Ontario', 'Canada', 'toronto.jpg', '2018-04-03 19:47:35'),
+(50, 'Miami', 'City in Florida. Tropical weather', 'USA', 'miami.jpg', '2018-04-03 20:01:45'),
+(51, 'Sydney', ' State capital of New South Wales and the most populous city in Australia', 'Australia', 'sydney.jpg', '2018-04-03 20:19:29'),
+(52, 'Cosenza', 'City in mountains of Calabria', 'Italy', 'cosenza.jpg', '2018-04-03 20:32:19');
 
 -- --------------------------------------------------------
 
@@ -86,7 +94,12 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`commentid`, `date`, `userid`, `comment`, `cityid`) VALUES
-(12, '2018-04-03 17:12:15', 16, 'Very nice place\r\n', 46);
+(12, '2018-04-03 17:12:15', 16, 'Very nice place\r\n', 46),
+(13, '2018-04-03 19:25:22', 16, 'test', 46),
+(14, '2018-04-03 19:53:11', 16, 'test', 49),
+(15, '2018-04-03 20:05:08', 16, '???', 50),
+(16, '2018-04-03 20:05:30', 16, 'Hurricanes arent even tough. Wind aint hurting me', 50),
+(17, '2018-04-03 20:43:43', 16, 'Very nice place. Nduja is great', 52);
 
 -- --------------------------------------------------------
 
@@ -111,7 +124,12 @@ INSERT INTO `killinfo` (`killid`, `cityid`, `date`, `killtext`, `killname`) VALU
 (25, 46, '2018-04-02 22:21:15', 'My Nonna was attacked by a hoard of gypsies getting off the train last week. Very scary', 'Gypsies'),
 (26, 46, '2018-04-02 22:21:15', 'The wolves have returned to our village this winter. The first time in 5 years, we had become complacent, forgetting their might and persistence. Many have perished. Many more still will.', 'Wolves'),
 (27, 47, '2018-04-03 17:21:52', 'Being buried alive in snow is very scary', 'Avalanches'),
-(28, 47, '2018-04-03 17:34:19', 'There are many people skiing in banff and many trees. A recipe for disaster', 'Skiing into a Tree');
+(28, 47, '2018-04-03 17:34:19', 'There are many people skiing in banff and many trees. A recipe for disaster', 'Skiing into a Tree'),
+(29, 49, '2018-04-03 19:47:35', 'Have rabies, are not afraid of humans', 'Raccoons'),
+(30, 50, '2018-04-03 20:01:45', 'Literal dinosaurs. Eat everything', 'Alligators'),
+(31, 50, '2018-04-03 20:01:45', 'Destroy stuff. ', 'Hurricanes'),
+(32, 51, '2018-04-03 20:19:29', 'Tiny jellyfish that sting swimmers', 'Box Jellyfish'),
+(33, 52, '2018-04-03 20:32:19', 'Wolves are the symbol of the La Sila Park', 'Wolves');
 
 -- --------------------------------------------------------
 
@@ -271,22 +289,22 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT for table `attractions`
 --
 ALTER TABLE `attractions`
-  MODIFY `attractionid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `attractionid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `cityid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `cityid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `commentid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `killinfo`
 --
 ALTER TABLE `killinfo`
-  MODIFY `killid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `killid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `users`
 --
