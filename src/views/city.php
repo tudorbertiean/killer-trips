@@ -118,6 +118,7 @@
               <!-- Wrapper for slides -->
               <div class="carousel-inner">
               <?php
+                    // Loop through each attraction and append it to the carousel
                     $arrlength = count($attractions);
 
                     for($x = 0; $x < $arrlength; $x++) {
@@ -154,6 +155,7 @@
             <h2>Things That May Kill You:</h2>
             <div class="row">
               <?php
+                // Loop through each kill info and display
                 $arrlength = count($killinfo);
 
                 for($x = 0; $x < $arrlength; $x++) {
@@ -174,6 +176,7 @@
             <h2>Comments:</h2>
             
             <?php
+            // You can only comment if you are logged in
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
               $userid = $_SESSION["userid"];
               $cityid = $city["cityid"];
@@ -190,6 +193,7 @@
             ?>
 
             <?php
+                // Display all comments
                 $arrlength = count($comments);
 
                 for($x = 0; $x < $arrlength; $x++) {

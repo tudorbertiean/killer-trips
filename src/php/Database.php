@@ -1,7 +1,7 @@
 <?php
 
 class Database {
-
+    // Singleton class to get an instance of mysqli from any other class
     private static $db;
     private $connection;
 

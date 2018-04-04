@@ -28,7 +28,7 @@ class Cities {
             if (($result->num_rows)>0){
                 $city = $result->fetch_assoc();
             } else {
-                // Invalid city, redirect to 404
+                // Invalid city, redirect to 404 page
                 header("Location: http://localhost:8080/killer-trips/src/views/404.php");
             }
 
@@ -39,6 +39,7 @@ class Cities {
         }
     }
 
+    // Handles the searching. Searches based on city name, country name, and city description
     public static function getCitiesByKeyword($keyword){
         include_once("../php/Database.php");        
 		try {
@@ -81,6 +82,7 @@ class Cities {
         }
     }
 
+    // Inserts into the attractions table
     function attractionsSql($db, $attractionNames, $attractionDesc, $cityid){
         $attSql = "INSERT INTO `attractions` (`name`, `description`, `cityid`, `image`) VALUES ";
         
@@ -88,19 +90,6 @@ class Cities {
         $attractionImgs = array();
         foreach($_FILES['attractionImg']['tmp_name'] as $key => $tmp_name){
             $final_file = self::saveMultipleImages('../images/attractions/', 'attractionImg', $key);
-            $file = $_FILES['attractionImg']['name'][$key];
-            $file_loc = $_FILES['attractionImg']['tmp_name'][$key];
-            $file_size = $_FILES['attractionImg']['size'][$key];
-            $file_type= $_FILES['attractionImg']['type'][$key]; 
-            $folder="../images/attractions/";
-
-            // new file size in KB
-            $new_size = $file_size/1024;  
-            // make file name in lower case
-            $new_file_name = strtolower($file);
-            // make file name in lower case
-            $final_file=str_replace(' ', '-', $new_file_name);
-            move_uploaded_file($file_loc, $folder.$final_file);
             array_push($attractionImgs, $final_file);
         }
 
@@ -115,6 +104,7 @@ class Cities {
         $db->query(rtrim($attSql,", ").";");
     }
 
+    // Inserts into the killinfo table
     function killInfoSql($db, $killerNames, $killerDesc, $cityid){
         $killSql = "INSERT INTO `killinfo` (`killname`, `killtext`, `cityid`) VALUES ";
         

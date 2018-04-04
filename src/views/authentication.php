@@ -65,8 +65,8 @@
 									</div>
 									<div class="form-group">
 										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											<div class="col-md-offset-5 col-md-4">
+												<button type="submit" class="btn btn-primary">Login</button>											
 											</div>
 										</div>
 									</div>
@@ -83,8 +83,8 @@
 									</div>
 									<div class="form-group">
 										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+											<div class="col-md-offset-5 col-md-4">
+												<button type="submit" class="btn btn-primary">Register</button>											
 											</div>
 										</div>
 									</div>

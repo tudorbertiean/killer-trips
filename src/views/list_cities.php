@@ -73,6 +73,7 @@
                 $arrlength = count($cities);
 
                 for($x = 0; $x < $arrlength; $x++) {
+                  // Loop through each city and display
                   $city = $cities[$x];
                   $votescore = Votes::getVotesForCity($city["cityid"]); 
                   $comments = Comments::getNumComments($city["cityid"]);

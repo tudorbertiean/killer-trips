@@ -1,6 +1,7 @@
 <?php
 
 class Attractions {
+    // Get data for a city's attractions
 	public static function getAttractionsForCity($cityid){
         include_once("../php/Database.php");        
 		try {

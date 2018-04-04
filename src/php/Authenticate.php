@@ -1,7 +1,7 @@
 <?php
 
 class Authenticate {
-
+    // Handle the login/register functions of application
 	public static $servername = "localhost";
 	public static $username = "root";
 	public static $password = "";

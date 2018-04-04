@@ -1,3 +1,4 @@
+// Used to call php function upon button click of upvote
 $('.up-button').click(function() {
     alert( "Data Saved: ");
     $.ajax({
@@ -9,6 +10,7 @@ $('.up-button').click(function() {
     });    
 });
 
+// Used to call php function upon button click of downvote
 $('.down-button').click(function() {
     $.ajax({
      type: "POST",

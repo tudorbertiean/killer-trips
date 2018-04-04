@@ -1,4 +1,7 @@
 <?php
+    // Intermediatery function to register user,
+    // if success, redirect to homepage, if unsuccessful,
+    // redirect back to register page
     include("../php/Authenticate.php");
     if(Authenticate::register($_POST["strUsername"], $_POST["strPassword"])){
         header("location: http://localhost:8080/killer-trips/src/views/homepage.php");

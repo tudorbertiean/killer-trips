@@ -1,4 +1,5 @@
 <?php
+    // Intermediatery function to add a rating of a city to database 
     session_start();
     include("../php/Votes.php");
     Votes::postVote($_GET["userid"], $_GET["cityid"], $_GET["score"]);                     
