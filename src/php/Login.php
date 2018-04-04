@@ -4,7 +4,7 @@
     // redirect back to login page
     include("../php/Authenticate.php");
     if(Authenticate::login($_POST["strUsername"], $_POST["strPassword"])){
-        header("location: http://localhost:8080/killer-trips/src/views/homepage.php");
+        header("location: /killer-trips/src/views/homepage.php");
     }
     else{
         $_SESSION['loggedin'] = false;

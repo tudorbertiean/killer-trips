@@ -35,14 +35,14 @@
               ?>
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><?php echo $_SESSION['username'];?></a></li>
-                <li><a href="http://localhost:8080/killer-trips/src/php/Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a href="/killer-trips/src/php/Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
               </ul>
               <?php
             } else{
               ?>
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://localhost:8080/killer-trips/src/views/authentication.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="http://localhost:8080/killer-trips/src/views/authentication.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="authentication.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="authentication.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
               </ul>
               <?php
             }
@@ -78,7 +78,7 @@
                   $votescore = Votes::getVotesForCity($city["cityid"]); 
                   $comments = Comments::getNumComments($city["cityid"]);
                   ?>
-                  <div class="col-6 col-lg-4 city">
+                  <div class="col-6 col-lg-4 col-xl-4 col-sm-4 col-md-4 city">
                     <h3><?php echo $city['city']?></h3>
                     <img src=<?php echo "../images/".$city['image']?> alt="" />
                     <p class="description"><?php echo $city['description']?></p>
@@ -86,7 +86,7 @@
                     <span class="voteicon" style="color: <?PHP echo ($votescore >= 0)? 'green': 'red'; ?>"><i class="glyphicon <?PHP echo ($votescore >= 0)? 'glyphicon-thumbs-up': 'glyphicon-thumbs-down'; ?>"></i></span>
                     <p class="votescore" ><?php echo $comments?></p>
                     <span class="voteicon"><i class="glyphicon glyphicon-envelope"></i></span>                    
-                    <p style="float:left;"><a class="btn btn-secondary" href="http://localhost:8080/killer-trips/src/views/city.php?cityid=<?php echo $city['cityid']?>" role="button">See more &raquo;</a></p>
+                    <p style="float:left;"><a class="btn btn-secondary" href="city.php?cityid=<?php echo $city['cityid']?>" role="button">See more &raquo;</a></p>
                   </div>
                   <?php
                 }                  

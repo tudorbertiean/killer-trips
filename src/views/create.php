@@ -25,14 +25,14 @@
               ?>
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><?php echo $_SESSION['username'];?></a></li>
-                <li><a href="http://localhost:8080/killer-trips/src/php/Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a href="/killer-trips/src/php/Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
               </ul>
               <?php
             } else {
               ?>
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://localhost:8080/killer-trips/src/views/register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="http://localhost:8080/killer-trips/src/views/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="/killer-trips/src/views/register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="/killer-trips/src/views/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
               </ul>
               <?php
             }

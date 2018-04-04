@@ -29,7 +29,7 @@ class Cities {
                 $city = $result->fetch_assoc();
             } else {
                 // Invalid city, redirect to 404 page
-                header("Location: http://localhost:8080/killer-trips/src/views/404.php");
+                header("Location: /killer-trips/src/views/404.php");
             }
 
             return $city;
@@ -74,7 +74,7 @@ class Cities {
                 self::killInfoSql($db, $killerNames, $killerDesc, $cityid);
             }
             
-            header("Location: http://localhost:8080/killer-trips/src/views/city.php?cityid=".$cityid);
+            header("Location: /killer-trips/src/views/city.php?cityid=".$cityid);
             
         }
         catch(mysqli_sql_exception $e){
