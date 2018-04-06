@@ -50,8 +50,8 @@
               } else{
                 ?>
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="/killer-trips/src/views/register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                  <li><a href="/killer-trips/src/views/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                  <li><a href="authentication.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                  <li><a href="authentication.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>
                 <?php
               }

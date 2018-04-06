@@ -45,8 +45,8 @@
             } else{
               ?>
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="/killer-trips/src/views/register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="/killer-trips/src/views/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="authentication.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="authentication.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
               </ul>
               <?php
             }
@@ -79,7 +79,7 @@
                   $comments = Comments::getNumComments($city["cityid"]);
                   ?>
                   <div class="row">
-                    <div class="col-6 col-lg-4 city">
+                    <div class="col-7 col-lg-7 city">
                         <h3><?php echo $city['city']?></h3>
                         <img src=<?php echo "../images/".$city['image']?> alt="" />
                         <p class="description"><?php echo $city['description']?></p>

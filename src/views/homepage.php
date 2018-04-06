@@ -78,7 +78,7 @@
                   $votescore = Votes::getVotesForCity($city["cityid"]); 
                   $comments = Comments::getNumComments($city["cityid"]);
                   ?>
-                  <div class="col-6 col-lg-4 col-xl-4 col-sm-4 col-md-4 city">
+                  <div style="height: 300px;" class="col-lg-4 col-xl-6 col-sm-6 col-md-6 city">
                     <h3><?php echo $city['city']?></h3>
                     <img src=<?php echo "../images/".$city['image']?> alt="" />
                     <p class="description"><?php echo $city['description']?></p>
