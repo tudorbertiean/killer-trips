@@ -6,7 +6,20 @@ class Database {
     private $connection;
 
     private function __construct() {
-        $this->connection = new mysqli("localhost", "root", "", "killertrips");
+        $env = $_SERVER["SERVER_NAME"];
+        if ($env = "localhost") {
+            $server = "localhost";
+            $name = "root";
+            $pass = "";
+            $database = "killertrips";
+        } else {
+            $server = "us-cdbr-iron-east-05.cleardb.net";
+            $name = "b3c2edf81b8059";
+            $pass = "747ce8f5";
+            $database = "heroku_a6b0a7fcdcbdc5d";
+        }
+        
+        $this->connection = new mysqli($server, $name, $pass, $database);
     }
 
     function __destruct() {
