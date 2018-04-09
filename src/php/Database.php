@@ -7,11 +7,13 @@ class Database {
 
     private function __construct() {
         $env = $_SERVER["SERVER_NAME"];
+        printf("s: %s\n", $end);
         if ($env = "localhost") {
             $server = "localhost";
             $name = "root";
             $pass = "";
             $database = "killertrips";
+            printf("s: %s\n", $server);
         } else {
             //Get Heroku ClearDB connection information
             $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
