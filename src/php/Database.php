@@ -13,7 +13,7 @@ class Database {
             $pass = "";
             $database = "killertrips";
         } else {
-            $server = "us-cdbr-iron-east-05.cleardb.net";
+            $server = "us-cdbr-iron-east-05.cleardb.net:3306";
             $name = "b3c2edf81b8059";
             $pass = "747ce8f5";
             $database = "heroku_a6b0a7fcdcbdc5d";
