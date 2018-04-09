@@ -4,7 +4,7 @@
     // redirect back to register page
     include("../php/Authenticate.php");
     if(Authenticate::register($_POST["strUsername"], $_POST["strPassword"])){
-        header("location: src/views/homepage.php");
+        header("location: /src/views/homepage.php");
     }
     else{
         $_SESSION['loggedin'] = false;
