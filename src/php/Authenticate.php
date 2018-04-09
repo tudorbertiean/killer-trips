@@ -1,19 +1,13 @@
 <?php
 
 class Authenticate {
-    // Handle the login/register functions of application
-	public static $servername = "localhost";
-	public static $username = "root";
-	public static $password = "";
-	public static $dbname = "killertrips";
-	
 	public static function login($un,$pw){
+        include_once("../php/Database.php");        
 		$valid = false;
 		try {
-            $mysqli = new mysqli(self::$servername, self::$username, self::$password, self::$dbname);
+            $db = Database::getConnection();
             $queryString = "SELECT * FROM `users` WHERE username = '".$un."' and password = MD5('".$pw."');";
-            $result = $mysqli->query($queryString);
-            print_r($result->fetch_array());
+            $result = $db->query($queryString);
             if (($result->num_rows)>0){
                 session_start();
                 $user = $result->fetch_assoc();
@@ -30,11 +24,12 @@ class Authenticate {
     }
     
     public static function register($un,$pw){
+        include_once("../php/Database.php");        
 		$valid = false;
 		try {
-            $mysqli = new mysqli(self::$servername, self::$username, self::$password, self::$dbname);
+            $db = Database::getConnection();
             $queryString = "SELECT * FROM `users` WHERE username = '".$un."';";
-            $result = $mysqli->query($queryString);
+            $result = $db->query($queryString);
             if (($result->num_rows)>0){
                 $valid = false;
             } else {
