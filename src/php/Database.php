@@ -27,7 +27,7 @@ class Database {
         
         $this->connection = new mysqli($server, $name, $pass, $database);
         if ($this->connection->connect_errno) {
-            printf("Connect failed: %s\n", $this->connection->connect_error);
+            printf("Connect: %s\n", $this->connection->connect_error);
             exit();
         }
     }
