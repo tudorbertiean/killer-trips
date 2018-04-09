@@ -19,6 +19,10 @@ class Database {
             $name = $cleardb_url["user"];
             $pass = $cleardb_url["pass"];
             $database = substr($cleardb_url["path"],1);
+            printf("s: %s\n", $server);
+            printf("n: %s\n", $name);
+            printf("p: %s\n", $pass);
+            printf("db: %s\n", $database);
         }
         
         $this->connection = new mysqli($server, $name, $pass, $database);
