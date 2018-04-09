@@ -13,10 +13,12 @@ class Database {
             $pass = "";
             $database = "killertrips";
         } else {
-            $server = "us-cdbr-iron-east-05.cleardb.net:3306";
-            $name = "b3c2edf81b8059";
-            $pass = "747ce8f5";
-            $database = "heroku_a6b0a7fcdcbdc5d";
+            //Get Heroku ClearDB connection information
+            $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+            $server = $cleardb_url["host"];
+            $name = $cleardb_url["user"];
+            $pass = $cleardb_url["pass"];
+            $database = substr($cleardb_url["path"],1);
         }
         
         $this->connection = new mysqli($server, $name, $pass, $database);
