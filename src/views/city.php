@@ -221,13 +221,13 @@
         $('.up-button').click(function() {
           if ($(this).hasClass('disabled')) {
           }else{
-            window.location.href = "src/php/AddRating.php?userid=<?php echo $userid ?>&cityid=<?php echo $cityid ?>&score=1";
+            window.location.href = "/src/php/AddRating.php?userid=<?php echo $userid ?>&cityid=<?php echo $cityid ?>&score=1";
           }
         });
         $('.down-button').click(function() {
           if ($(this).hasClass('disabled')) {
           }else{
-            window.location.href = "src/php/AddRating.php?userid=<?php echo $userid ?>&cityid=<?php echo $cityid ?>&score=-1";
+            window.location.href = "/src/php/AddRating.php?userid=<?php echo $userid ?>&cityid=<?php echo $cityid ?>&score=-1";
           }
          });
       </script>
