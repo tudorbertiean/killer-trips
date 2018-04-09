@@ -20,6 +20,10 @@ class Database {
         }
         
         $this->connection = new mysqli($server, $name, $pass, $database);
+        if ($this->connection->connect_errno) {
+            printf("Connect failed: %s\n", $mysqli->connect_error);
+            exit();
+        }
     }
 
     function __destruct() {
