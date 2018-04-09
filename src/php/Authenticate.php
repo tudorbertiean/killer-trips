@@ -13,6 +13,7 @@ class Authenticate {
             $mysqli = new mysqli(self::$servername, self::$username, self::$password, self::$dbname);
             $queryString = "SELECT * FROM `users` WHERE username = '".$un."' and password = MD5('".$pw."');";
             $result = $mysqli->query($queryString);
+            print_r($result->fetch_array());
             if (($result->num_rows)>0){
                 session_start();
                 $user = $result->fetch_assoc();
