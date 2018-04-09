@@ -25,7 +25,7 @@
               ?>
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><?php echo $_SESSION['username'];?></a></li>
-                <li><a href="/killer-trips/src/php/Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a href="/src/php/Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
               </ul>
               <?php
             } else {

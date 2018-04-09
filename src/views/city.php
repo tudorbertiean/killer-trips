@@ -44,7 +44,7 @@
                 ?>
                 <ul class="nav navbar-nav navbar-right">
                   <li><a href="#"><?php echo $_SESSION['username'];?></a></li>
-                  <li><a href="/killer-trips/src/php/Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                  <li><a href="/src/php/Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                 </ul>
                 <?php
               } else{
@@ -221,13 +221,13 @@
         $('.up-button').click(function() {
           if ($(this).hasClass('disabled')) {
           }else{
-            window.location.href = "/killer-trips/src/php/AddRating.php?userid=<?php echo $userid ?>&cityid=<?php echo $cityid ?>&score=1";
+            window.location.href = "src/php/AddRating.php?userid=<?php echo $userid ?>&cityid=<?php echo $cityid ?>&score=1";
           }
         });
         $('.down-button').click(function() {
           if ($(this).hasClass('disabled')) {
           }else{
-            window.location.href = "/killer-trips/src/php/AddRating.php?userid=<?php echo $userid ?>&cityid=<?php echo $cityid ?>&score=-1";
+            window.location.href = "src/php/AddRating.php?userid=<?php echo $userid ?>&cityid=<?php echo $cityid ?>&score=-1";
           }
          });
       </script>
